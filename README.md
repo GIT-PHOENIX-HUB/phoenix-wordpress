@@ -16,7 +16,7 @@ releases/   Built, upload-ready .zip artifacts for WP admin → Upload Plugin
 
 ## Plugins
 
-### phoenix-electric-estimate-form — v1.0.0
+### phoenix-electric-estimate-form — v1.1.0
 
 Self-hosted estimate-request form. Replaces WPForms on the Free Estimate page
 (`/free-estimate/`, page 272) — no annual license, no third-party UI tax.
@@ -33,7 +33,7 @@ Self-hosted estimate-request form. Replaces WPForms on the Free Estimate page
 - **Security:** WordPress nonce, full server-side sanitization, escaped output,
   prepared SQL, hidden honeypot for bots.
 - **Source:** `plugins/phoenix-electric-estimate-form/`
-- **Build:** `releases/phoenix-electric-estimate-form-v1.0.0.zip`
+- **Build:** `releases/phoenix-electric-estimate-form-v1.1.0.zip`
 
 ## Install
 
@@ -51,7 +51,7 @@ zip -r ../releases/<plugin-name>-vX.Y.Z.zip <plugin-name> -x "*.DS_Store"
 
 ## Status / verification
 
-- **phoenix-electric-estimate-form v1.0.0** — syntax verified via glayzzle
+- **phoenix-electric-estimate-form v1.1.0** — syntax verified via glayzzle
   php-parser (713 lines, equivalent to `php -l`). Runtime gate = live activation
   + test submission on the site.
 

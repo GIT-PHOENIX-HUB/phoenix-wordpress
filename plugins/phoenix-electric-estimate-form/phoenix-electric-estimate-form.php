@@ -3,7 +3,7 @@
  * Plugin Name:       Phoenix Electric Estimate Form
  * Plugin URI:        https://phoenixelectric.life
  * Description:       Lightweight estimate-request form for Phoenix Electric. Drop the [phoenix_estimate_form] shortcode on any page to collect leads — saves each submission to the database, emails the office, and gives you an admin screen with CSV export. No third-party form service required.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Phoenix Electric
@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 // ---------------------------------------------------------------------------
 // Constants.
 // ---------------------------------------------------------------------------
-define( 'PE_EF_VERSION', '1.0.0' );
+define( 'PE_EF_VERSION', '1.1.0' );
 define( 'PE_EF_DB_VERSION', '1.0.0' );
 define( 'PE_EF_TABLE', 'pe_estimate_entries' );          // un-prefixed; real name is $wpdb->prefix . PE_EF_TABLE
 define( 'PE_EF_NOTIFY_EMAIL', 'contact@phoenixelectric.life' );
@@ -138,7 +138,7 @@ function pe_ef_render_shortcode() {
 	ob_start();
 	pe_ef_print_styles_once();
 	?>
-	<div class="pe-ef-wrap" id="pe-ef-form">
+	<div class="pe-ef-wrap pe-estimate-form" id="pe-ef-form">
 
 		<?php if ( $success ) : ?>
 			<div class="pe-ef-notice pe-ef-notice--success" role="status">
@@ -656,11 +656,11 @@ function pe_ef_print_styles_once() {
 	$printed = true;
 	?>
 	<style>
-		.pe-ef-wrap { max-width: 680px; margin: 0 auto; }
+		.pe-ef-wrap { max-width: 680px; margin: 0 auto; font-family: Georgia, "Times New Roman", serif; color: #666666; }
 		.pe-ef-hp { position: absolute; left: -9999px; top: -9999px; height: 0; width: 0; overflow: hidden; }
-		.pe-ef-notice { padding: 14px 18px; border-radius: 6px; margin-bottom: 20px; line-height: 1.5; }
-		.pe-ef-notice--success { background: #e7f6ec; border: 1px solid #3fae6b; color: #14532d; }
-		.pe-ef-notice--error { background: #fdecec; border: 1px solid #d9534f; color: #842029; }
+		.pe-ef-notice { padding: 14px 18px; border-radius: 4px; margin-bottom: 20px; line-height: 1.5; }
+		.pe-ef-notice--success { background: #fdf6e6; border: 1px solid #f4cf7f; color: #1a1a1a; }
+		.pe-ef-notice--error { background: #fdeceb; border: 1px solid #e20b00; color: #8a0a02; }
 		.pe-ef-notice ul { margin: 8px 0 0 18px; }
 		.pe-ef-row { display: flex; gap: 16px; flex-wrap: wrap; }
 		.pe-ef-row .pe-ef-field { flex: 1 1 200px; }
@@ -668,24 +668,24 @@ function pe_ef_print_styles_once() {
 		.pe-ef-row--csz .pe-ef-field--state { flex: 1 1 120px; }
 		.pe-ef-row--csz .pe-ef-field--zip { flex: 1 1 120px; }
 		.pe-ef-field { margin-bottom: 16px; }
-		.pe-ef-field label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; }
-		.pe-ef-req { color: #d9534f; }
+		.pe-ef-field label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px; color: #1a1a1a; }
+		.pe-ef-req { color: #e20b00; }
 		.pe-ef-field input,
 		.pe-ef-field select,
 		.pe-ef-field textarea {
 			width: 100%; padding: 11px 12px; border: 1px solid #c3c4c7;
-			border-radius: 6px; font-size: 16px; box-sizing: border-box; background: #fff;
+			border-radius: 4px; font-size: 16px; box-sizing: border-box; background: #ffffff; color: #333333; font-family: Georgia, "Times New Roman", serif;
 		}
 		.pe-ef-field input:focus,
 		.pe-ef-field select:focus,
-		.pe-ef-field textarea:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 2px rgba(217,119,6,0.2); }
+		.pe-ef-field textarea:focus { outline: none; border-color: #f4cf7f; box-shadow: 0 0 0 2px rgba(244,207,127,0.45); }
 		.pe-ef-actions { margin-top: 8px; }
 		.pe-ef-submit {
-			background: #d97706; color: #fff; border: 0; padding: 14px 28px;
-			font-size: 16px; font-weight: 700; border-radius: 6px; cursor: pointer;
-			transition: background .15s ease;
+			background: transparent; color: #1a1a1a; border: 2px solid #f4cf7f; padding: 13px 32px;
+			font-size: 15px; font-weight: 700; border-radius: 4px; cursor: pointer; font-family: Georgia, "Times New Roman", serif; text-transform: uppercase; letter-spacing: 0.06em;
+			transition: background .15s ease, color .15s ease;
 		}
-		.pe-ef-submit:hover { background: #b45309; }
+		.pe-ef-submit:hover, .pe-ef-submit:focus { background: #f4cf7f; color: #000000; }
 	</style>
 	<?php
 }
