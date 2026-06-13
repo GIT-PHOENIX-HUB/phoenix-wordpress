@@ -40,7 +40,7 @@ function phx_mail_config() {
 	$tenant = defined( 'PHOENIX_MAIL_TENANT_ID' ) ? PHOENIX_MAIL_TENANT_ID : ( isset( $o['tenant_id'] ) ? $o['tenant_id'] : '' );
 	$client = defined( 'PHOENIX_MAIL_CLIENT_ID' ) ? PHOENIX_MAIL_CLIENT_ID : ( isset( $o['client_id'] ) ? $o['client_id'] : '' );
 	$secret = defined( 'PHOENIX_MAIL_CLIENT_SECRET' ) ? PHOENIX_MAIL_CLIENT_SECRET : ( isset( $o['client_secret'] ) ? $o['client_secret'] : '' );
-	$sender = isset( $o['sender'] ) && $o['sender'] ? $o['sender'] : 'contact@phoenixelectric.life';
+	$sender = defined( 'PHOENIX_MAIL_SENDER' ) ? PHOENIX_MAIL_SENDER : ( isset( $o['sender'] ) && $o['sender'] ? $o['sender'] : 'contact@phoenixelectric.life' );
 
 	return array(
 		'enabled'       => ! empty( $o['enabled'] ),
@@ -601,8 +601,12 @@ function phx_mail_settings_page() {
 				<tr>
 					<th scope="row"><label for="phx_sender">Sender mailbox</label></th>
 					<td>
-						<input type="email" id="phx_sender" class="regular-text" name="<?php echo esc_attr( PHX_MAIL_OPT ); ?>[sender]" value="<?php echo esc_attr( $c['sender'] ); ?>" />
-						<p class="description">The M365 mailbox mail is sent as. Must be a real mailbox the app may send from.</p>
+						<?php if ( defined( 'PHOENIX_MAIL_SENDER' ) ) : ?>
+							<em>Defined in <code>wp-config.php</code> (<?php echo esc_html( $c['sender'] ); ?>).</em>
+						<?php else : ?>
+							<input type="email" id="phx_sender" class="regular-text" name="<?php echo esc_attr( PHX_MAIL_OPT ); ?>[sender]" value="<?php echo esc_attr( $c['sender'] ); ?>" />
+							<p class="description">The M365 mailbox mail is sent as. Must be a real mailbox the app may send from.</p>
+						<?php endif; ?>
 					</td>
 				</tr>
 			</table>

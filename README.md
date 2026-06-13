@@ -44,7 +44,7 @@ instead of SMTP — a self-hosted replacement for WP Mail SMTP for Microsoft 365
   mailbox, an Enable toggle, and a **Send test email** button.
 - **Secrets:** entered in the admin screen (stored in WordPress options) or, for tighter
   security, defined in `wp-config.php` as `PHOENIX_MAIL_TENANT_ID`, `PHOENIX_MAIL_CLIENT_ID`,
-  `PHOENIX_MAIL_CLIENT_SECRET`. **Never committed to this repo.**
+  `PHOENIX_MAIL_CLIENT_SECRET`, `PHOENIX_MAIL_SENDER`. **Never committed to this repo.**
 - **How it works:** hooks `pre_wp_mail`; when enabled + configured, sends via Graph
   `users/{sender}/sendMail`, else falls through to the default mailer. Token cached; 401 retried once.
 - **Azure prerequisite:** the app registration needs Microsoft Graph **`Mail.Send` application
