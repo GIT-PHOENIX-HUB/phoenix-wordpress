@@ -35,6 +35,24 @@ Self-hosted estimate-request form. Replaces WPForms on the Free Estimate page
 - **Source:** `plugins/phoenix-electric-estimate-form/`
 - **Build:** `releases/phoenix-electric-estimate-form-v1.1.0.zip`
 
+### phoenix-mail — v1.0.0
+
+Routes all WordPress email through **Microsoft Graph** (app-only / client credentials)
+instead of SMTP — a self-hosted replacement for WP Mail SMTP for Microsoft 365 mailboxes.
+
+- **Settings:** Settings → Phoenix Mail — Tenant ID, Client ID, Client Secret, Sender
+  mailbox, an Enable toggle, and a **Send test email** button.
+- **Secrets:** entered in the admin screen (stored in WordPress options) or, for tighter
+  security, defined in `wp-config.php` as `PHOENIX_MAIL_TENANT_ID`, `PHOENIX_MAIL_CLIENT_ID`,
+  `PHOENIX_MAIL_CLIENT_SECRET`. **Never committed to this repo.**
+- **How it works:** hooks `pre_wp_mail`; when enabled + configured, sends via Graph
+  `users/{sender}/sendMail`, else falls through to the default mailer. Token cached; 401 retried once.
+- **Azure prerequisite:** the app registration needs Microsoft Graph **`Mail.Send` application
+  permission** (admin consent), and the sender must be a real M365 mailbox.
+- **Cutover:** install → activate → enter creds → **Send test** → confirm receipt → enable the
+  override → deactivate WP Mail SMTP.
+- **Source:** `plugins/phoenix-mail/` · **Build:** `releases/phoenix-mail-v1.0.0.zip`
+
 ## Install
 
 WP admin → **Plugins → Add New → Upload Plugin** → choose the release zip →
